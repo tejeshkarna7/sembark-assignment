@@ -1,4 +1,7 @@
+/** React Imports */
 import { useEffect, useState, useCallback } from 'react';
+
+/** Components */
 import { apiService } from '../api/apiService';
 import { Product, Category } from '../context/ProductContext';
 
@@ -7,7 +10,10 @@ import { Product, Category } from '../context/ProductContext';
  * products and categories. It returns the fetched data, loading and error flags,
  * and a `refresh` function that can be called to re‑fetch the data.
  */
+
+/** Main Export */
 export const useProducts = () => {
+
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

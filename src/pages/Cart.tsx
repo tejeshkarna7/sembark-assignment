@@ -1,6 +1,11 @@
+/** React Imports */
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+/** Components */
 import { useCart } from '../context/CartContext';
+
+/** Main Export */
 export const Cart: React.FC = () => {
     const { items, removeFromCart, getTotalValue, getTotalItems } = useCart();
     return (

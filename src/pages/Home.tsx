@@ -1,10 +1,15 @@
+/** React Imports */
 import React, { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+
+/** Components */
 import { ProductCard } from '../components/ProductCard';
 import { CategoryFilter } from '../components/CategoryFilter';
 import { Loader } from '../components/Loader';
 import { useProduct } from '../context/ProductContext';
 import { useProducts } from '../hooks/useProducts';
+
+/** Main Export */
 
 /**
  * Home page – displays the product grid and category filter.
