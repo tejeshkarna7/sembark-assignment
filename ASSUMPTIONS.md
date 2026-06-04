@@ -22,13 +22,10 @@
 ## Design Decisions
 
 ### 1. State Management Strategy
-**Decision**: Use both Context API and MobX
 - **Context API** for cart (frequently accessed, simple structure)
-- **MobX** for products (complex filtering, multiple observers)
 
 **Rationale**: 
 - Separates concerns effectively
-- Reduces re-renders with MobX observer pattern
 - Cart context is simpler to test
 
 ### 2. Routing Approach

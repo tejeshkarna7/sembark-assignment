@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiService } from '../api/apiService';
 import { useCart } from '../context/CartContext';
-import { Product } from '../store/ProductStore';
+import { Product } from '../context/ProductContext';
 export const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();

@@ -12,7 +12,7 @@ A modern e-commerce web application built with React, TypeScript, and Context AP
 ✅ **Animations** - Smooth transitions and page animations
 ✅ **E2E Testing** - Comprehensive Cypress test suite
 ✅ **TypeScript** - Full type safety with TypeScript
-✅ **MobX State Management** - Observable store for product state
+✅ **Context API State Management** - Central store for product and cart state
 ✅ **Context API** - Cart state management with hooks
 
 ## Tech Stack
@@ -21,7 +21,6 @@ A modern e-commerce web application built with React, TypeScript, and Context AP
 - **TypeScript** - Type-safe JavaScript
 - **React Router v6** - Client-side routing
 - **Tailwind CSS** - Utility-first CSS framework
-- **MobX** - State management for products
 - **Context API** - Cart state management
 - **Cypress** - E2E testing framework
 - **Create React App** - Project scaffolding
@@ -90,7 +89,7 @@ src/
 │   ├── Home.tsx
 │   ├── ProductDetail.tsx
 │   └── Cart.tsx
-├── store/              # MobX store
+├── store/              
 │   └── ProductStore.ts
 ├── App.tsx             # Main app component
 ├── index.tsx           # Entry point
@@ -113,7 +112,7 @@ public/
 - Sorting by price (ascending order)
 
 ### 2. Product Detail Page
-- Dynamic routing: `/product/:id/details`
+- Dynamic routing: `/product/:id`
 - Product data fetched from API based on ID
 - Quantity selector for adding to cart
 - Back navigation to home page
@@ -126,7 +125,6 @@ public/
 - Total value displayed in footer
 
 ### 4. State Management
-- **MobX**: Manages product listings and filters
 - **Context API**: Manages cart items and operations
 - **localStorage**: Persists cart across sessions
 
@@ -245,7 +243,6 @@ lsof -ti:3000 | xargs kill -9
 ## Performance Optimizations
 
 - Images use native lazy loading
-- Memoized components with MobX observer
 - Efficient re-renders with Context API
 - Debounced category filtering via URL
 

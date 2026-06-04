@@ -1,4 +1,3 @@
-import { makeAutoObservable } from 'mobx';
 
 export interface Product {
   id: number;
@@ -26,9 +25,6 @@ class ProductStore {
   error: string | null = null;
   selectedCategories: string[] = [];
 
-  constructor() {
-    makeAutoObservable(this);
-  }
 
   setProducts(products: Product[]) {
     this.products = products;

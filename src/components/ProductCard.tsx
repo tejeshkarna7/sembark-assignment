@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Product } from 'store/ProductStore';
+import { Product } from '../context/ProductContext';
 
 interface ProductCardProps {
   product: Product;
+  className?: string;
 }
 
 const getCategoryName = (category: any): string => {
@@ -16,7 +17,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <Link
-      to={`/product/${product.id}/details`}
+      to={`/product/${product.id}`}
       className="no-underline text-inherit"
     >
       <article className="slide-in border border-gray-300 rounded-lg overflow-hidden bg-white transition-all duration-300 cursor-pointer h-full flex flex-col ">

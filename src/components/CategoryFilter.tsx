@@ -1,5 +1,5 @@
+import { Category } from '../context/ProductContext';
 import React from 'react';
-import { Category } from 'store/ProductStore';
 
 interface CategoryFilterProps {
   categories: Category[];

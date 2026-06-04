@@ -1,4 +1,4 @@
-import { Category, Product } from "store/ProductStore";
+import { Category, Product } from '../context/ProductContext';
 
 const API_BASE_URL = 'https://api.escuelajs.co/api/v1';
 
