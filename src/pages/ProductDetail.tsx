@@ -49,18 +49,18 @@ export const ProductDetail: React.FC = () => {
     };
     if (loading) {
         return (
-            <main className="p-8 text-center">
-                <p className="text-lg text-gray-600">Loading product details...</p>
+            <main className="p-4 sm:p-8 text-center">
+                <p className="text-base sm:text-lg text-gray-600">Loading product details...</p>
             </main>
         );
     }
     if (error || !product) {
         return (
-            <main className="p-8 text-center">
-                <p className="text-red-600 text-lg mb-6">{error || 'Product not found'}</p>
+            <main className="p-4 sm:p-8 text-center">
+                <p className="text-red-600 text-base sm:text-lg mb-4 sm:mb-6">{error || 'Product not found'}</p>
                 <button
                     onClick={() => navigate('/')}
-                    className="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+                    className="px-4 py-2.5 sm:px-6 sm:py-3 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm sm:text-base"
                 >
                     Back to Home
                 </button>
@@ -69,14 +69,14 @@ export const ProductDetail: React.FC = () => {
     }
     const imageUrl = product.images?.[0] || product.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="400"%3E%3Crect fill="%23e5e7eb" width="400" height="400"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="20" fill="%239ca3af"%3EProduct Image Not Available%3C/text%3E%3C/svg%3E';
     return (
-        <main className="p-8 max-w-4xl mx-auto">
+        <main className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
             <button
                 onClick={() => navigate('/')}
-                className="mb-6 px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-sm"
+                className="mb-4 sm:mb-6 px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-xs sm:text-sm"
             >
                 ← Back to Home
             </button>
-            <article className="slide-in grid grid-cols-1 md:grid-cols-2 gap-8 bg-gray-100 p-8 rounded-lg border border-gray-200">
+            <article className="slide-in grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 bg-gray-100 p-4 sm:p-6 lg:p-8 rounded-lg border border-gray-200">
                 <section className="slide-in flex items-start justify-center">
                     <img
                         src={imageUrl}
@@ -87,22 +87,22 @@ export const ProductDetail: React.FC = () => {
                         }}
                     />
                 </section>
-                <section className="flex flex-col gap-6">
+                <section className="flex flex-col gap-4 sm:gap-6">
                     <header>
-                        <h1 className="text-4xl font-bold mb-2">{product.title}</h1>
-                        <p className="text-gray-600 text-base">
+                        <h1 className="text-2xl sm:text-4xl font-bold mb-1.5 sm:mb-2">{product.title}</h1>
+                        <p className="text-gray-600 text-sm sm:text-base">
                             {typeof product.category === 'string' ? product.category : product.category?.name || 'Uncategorized'}
                         </p>
                     </header>
-                    <div className="text-3xl font-bold text-blue-600">
+                    <div className="text-2xl sm:text-3xl font-bold text-blue-600">
                         Price: ${product.price.toFixed(2)}
                     </div>
                     <div>
-                        <h2 className="text-xl font-semibold mb-2">Description</h2>
-                        <p className="text-gray-700 leading-relaxed">{product.description}</p>
+                        <h2 className="text-lg sm:text-xl font-semibold mb-1.5 sm:mb-2">Description</h2>
+                        <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{product.description}</p>
                     </div>
-                    <div className="flex gap-4 items-center">
-                        <label className="font-bold">
+                    <div className="flex gap-3 sm:gap-4 items-center">
+                        <label className="font-bold text-sm sm:text-base">
                             Quantity:
                             <input
                                 type="number"
@@ -110,18 +110,18 @@ export const ProductDetail: React.FC = () => {
                                 max="10"
                                 value={quantity}
                                 onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))}
-                                className="ml-2 px-3 py-2 rounded border border-gray-300 w-16 text-center"
+                                className="ml-2 px-2 py-1.5 sm:px-3 sm:py-2 rounded border border-gray-300 w-14 sm:w-16 text-center"
                             />
                         </label>
                     </div>
                     <button
                         onClick={handleAddToCart}
-                        className="px-6 py-3 bg-black text-white rounded-xl font-bold text-lg"
+                        className="px-4 py-2.5 sm:px-6 sm:py-3 bg-black text-white rounded-xl font-bold text-base sm:text-lg"
                     >
                         Add to My Cart
                     </button>
                     {addedToCart && (
-                        <div className="slide-in px-4 py-3 bg-green-100 text-green-700 rounded text-center font-semibold">
+                        <div className="slide-in px-3 py-2.5 sm:px-4 sm:py-3 bg-green-100 text-green-700 rounded text-center font-semibold text-sm sm:text-base">
                             ✓ Added to cart successfully!
                         </div>
                     )}

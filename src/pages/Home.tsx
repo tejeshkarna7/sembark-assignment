@@ -21,6 +21,8 @@ import { useProducts } from '../hooks/useProducts';
 export const Home: React.FC = () => {
     // URL search params for persisting filter selections
     const [searchParams, setSearchParams] = useSearchParams();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortOrder, setSortOrder] = useState<'low-to-high' | 'high-to-low'>('low-to-high');
     const [visibleCount, setVisibleCount] = useState(10);
     const [isScrollLoading, setIsScrollLoading] = useState(false);
     const observerRef = useRef<HTMLDivElement | null>(null);
@@ -62,12 +64,22 @@ export const Home: React.FC = () => {
     const getCategoryName = (category: any): string =>
         typeof category === 'string' ? category : category?.name || 'Uncategorized';
 
+    const normalizedSearchTerm = searchTerm.trim().replace(/\s+/g, ' ').toLowerCase();
+
     // Filter and sort products based on selected categories from context
-    const filteredProducts = selectedCategories.length === 0
+    const categoryFilteredProducts = selectedCategories.length === 0
         ? products
         : products.filter((p) => selectedCategories.includes(getCategoryName(p.category)));
 
-    const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price);
+    const filteredProducts = normalizedSearchTerm
+        ? categoryFilteredProducts.filter((product) =>
+            product.title.toLowerCase().includes(normalizedSearchTerm)
+        )
+        : categoryFilteredProducts;
+
+    const sortedProducts = [...filteredProducts].sort((a, b) =>
+        sortOrder === 'low-to-high' ? a.price - b.price : b.price - a.price
+    );
 
     const displayedProducts = sortedProducts.slice(0, visibleCount);
     const hasMore = visibleCount < sortedProducts.length;
@@ -91,13 +103,23 @@ export const Home: React.FC = () => {
     }, [hasMore, isScrollLoading, loading]);
 
     return (
-        <main className="p-8">
-            <h1 className="mb-6 text-4xl font-bold">Products</h1>
+        <main className="p-4 sm:p-6 lg:p-8">
+            <h1 className="mb-4 sm:mb-6 text-3xl sm:text-4xl font-bold">Products</h1>
             <div className="gap-8">
                 <CategoryFilter
                     categories={categories}
                     selectedCategories={selectedCategories}
                     onCategoryChange={handleCategoryChange}
+                    searchTerm={searchTerm}
+                    onSearchChange={(value) => {
+                        setSearchTerm(value);
+                        setVisibleCount(10);
+                    }}
+                    sortOrder={sortOrder}
+                    onSortChange={(value) => {
+                        setSortOrder(value);
+                        setVisibleCount(10);
+                    }}
                 />
                 <section className="md:col-span-3">
                     {loading ? (
@@ -114,20 +136,20 @@ export const Home: React.FC = () => {
                         </div>
                     ) : displayedProducts.length ? (
                         <>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                                 {displayedProducts.map((product) => (
                                     <ProductCard key={product.id} product={product} />
                                 ))}
                             </div>
                             {hasMore && (
-                                <div ref={observerRef} className="mt-8">
+                                <div ref={observerRef} className="mt-5 sm:mt-8">
                                     {isScrollLoading && <Loader />}
                                 </div>
                             )}
                         </>
                     ) : (
-                        <div className="text-center py-8">
-                            <p className="text-lg text-gray-600">No products found</p>
+                        <div className="text-center py-6 sm:py-8">
+                            <p className="text-base sm:text-lg text-gray-600">No products found</p>
                         </div>
                     )}
                 </section>

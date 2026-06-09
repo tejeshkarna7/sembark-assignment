@@ -26,7 +26,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             className="no-underline text-inherit"
         >
             <article className="slide-in border border-gray-300 rounded-lg overflow-hidden bg-white transition-all duration-300 cursor-pointer h-full flex flex-col ">
-                <div className="w-full h-48 overflow-hidden bg-gray-200 flex items-center justify-center">
+                <div className="w-full h-40 sm:h-48 overflow-hidden bg-gray-200 flex items-center justify-center">
                     <img
                         src={imageUrl}
                         alt={product.title}
@@ -36,14 +36,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         }}
                     />
                 </div>
-                <div className="p-4 flex-1 flex flex-col">
-                    <h3 className="text-base font-semibold mb-2 line-clamp-2 min-h-14">
+                <div className="p-3 sm:p-4 flex-1 flex flex-col">
+                    <h3 className="text-sm sm:text-base font-semibold mb-1.5 sm:mb-2 line-clamp-2 min-h-10 sm:min-h-14">
                         {product.title}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-4 flex-1">
+                    <p className="text-gray-600 text-xs sm:text-sm mb-3 sm:mb-4 flex-1">
                         {getCategoryName(product.category)}
                     </p>
-                    <div className="text-lg font-bold text-blue-600">
+                    <div className="text-base sm:text-lg font-bold text-blue-600">
                         ${product.price.toFixed(2)}
                     </div>
                 </div>

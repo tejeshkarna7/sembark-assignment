@@ -12,20 +12,20 @@ export const Header: React.FC = () => {
     const totalItems = getTotalItems();
 
     return (
-        <header className="bg-black px-8 py-4 flex justify-between items-center border-b border-gray-800">
+        <header className="bg-black px-4 py-3 sm:px-6 sm:py-4 lg:px-8 flex justify-between items-center border-b border-gray-800">
             <Link
                 to="/"
-                className="text-white no-underline text-2xl font-bold hover:text-blue-400 transition-colors"
+                className="text-white no-underline text-xl sm:text-2xl font-bold hover:text-blue-400 transition-colors"
             >
                 Sembark Shop
             </Link>
             <Link
                 to="/cart"
-                className="flex items-center gap-2 text-white no-underline text-base px-4 py-2"
+                className="flex items-center gap-1.5 sm:gap-2 text-white no-underline text-sm sm:text-base px-2 py-1.5 sm:px-4 sm:py-2 hover:text-blue-400 transition-colors"
             >
                 <div className="relative flex items-center">
                     <svg
-                        className="w-6 h-6 mr-1"
+                        className="w-5 h-5 sm:w-6 sm:h-6 sm:mr-1"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="2"
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
                     {totalItems > 0 && (
                         <>
                             {/* Visual Badge (Circle) */}
-                            <span className="absolute -top-1.5 -right-1.5 bg-blue-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-black">
+                            <span className="absolute -top-1.5 -right-1.5 bg-blue-500 text-white text-[9px] sm:text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center border border-black">
                                 {totalItems}
                             </span>
                             {/* Screen-reader / Cypress test match support */}
